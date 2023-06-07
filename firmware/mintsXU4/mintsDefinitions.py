@@ -51,7 +51,7 @@ referencePklsFolder       = dataFolder    + "/referencePklsV3"
 mergedPklsFolder          = dataFolder    + "/mergedPklsV3"
 modelsPklsFolder          = dataFolder    + "/modelsPklsV3"
 # liveFolder                = dataFolder    + "/liveUpdate/results"
-liveFolder                = dataFolder    + "/testNow"
+liveFolder                = dataFolder    + "/testResV3"
 
 
 # Change Accordingly  
