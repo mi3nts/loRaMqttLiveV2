@@ -44,7 +44,7 @@ for nodeData in nodeIDs:
     print("running from: " + climateBegin)
     print("-----------------------------------------------")
     try:
-        pathIn    = mP.getPathGeneric(mergedPklsFolder,nodeID,"climateDataWSTCCurrent",".pkl")
+        pathIn    = mP.getPathGeneric(mergedPklsFolder,nodeID,"climateDataWSTCCurrent","pkl")
         if os.path.isfile(pathIn):
             mintsData = pd.read_pickle(pathIn)
             print(mintsData)
