@@ -46,10 +46,10 @@ macAddress                = findMacAddress()
 dataFolder                = mintsDefinitions['dataFolder']
 rawFolder                 = dataFolder    + "/raw"
 referenceFolder           = dataFolder    + "/reference"
-rawPklsFolder             = dataFolder    + "/rawPkls"
-referencePklsFolder       = dataFolder    + "/referencePkls"
-mergedPklsFolder          = dataFolder    + "/mergedPkls"
-modelsPklsFolder          = dataFolder    + "/modelsPkls"
+rawPklsFolder             = dataFolder    + "/rawPklsV3"
+referencePklsFolder       = dataFolder    + "/referencePklsV3"
+mergedPklsFolder          = dataFolder    + "/mergedPklsV3"
+modelsPklsFolder          = dataFolder    + "/modelsPklsV3"
 liveFolder                = dataFolder    + "/liveUpdate/results"
 
 
