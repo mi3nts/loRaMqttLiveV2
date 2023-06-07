@@ -337,7 +337,7 @@ def climateDataPrepV3(nodeData,nodeID,WIMDA,YXXDR):
 
     if len(mintsData.index)>0:
         print("GPS Cropping")
-        pd.to_pickle(mintsData,getPathGeneric(mergedPklsFolder,nodeID,"climateDataV3","pkl") )
+        pd.to_pickle(mintsData,getPathGeneric(mergedPklsFolder,nodeID,"climateData","pkl") )
         
         mintsData = gpsCropCoordinatesV2(mintsData,nodeData['gpsSensor'],32.992179, -96.757777,0.0015,0.0015)
         
