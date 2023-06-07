@@ -1,0 +1,2 @@
+#Live Update 
+nohup python3 l_1_poLoLiveUpdate.py >& logs/livePoLoLiveUpdate2023.log &
