@@ -76,7 +76,7 @@ def superReaderV2(nodeID,sensorID):
         floatSum  = 7
         floatSum2 = -1         
     elif sensorID == "GPGGALR":
-        floatSum  = 5   
+        floatSum  = 6   
         floatSum2 = -1   
     elif sensorID == "GPGGAPL":
         floatSum  = 5   
