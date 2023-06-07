@@ -324,8 +324,9 @@ def getDataSuperReader(nodeID,sensorID,beginDate):
     
     startDate         = datetime.datetime.strptime(beginDate, '%Y-%m-%d')
     mintsData         = superReaderV2(nodeID,sensorID)
-    mintsData         = mintsData[mintsData.index>startDate]
     print(mintsData)
+    mintsData         = mintsData[mintsData.index>startDate]
+    
     return mintsData
 
 
