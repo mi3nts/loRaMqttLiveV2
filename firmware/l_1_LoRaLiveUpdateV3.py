@@ -124,7 +124,7 @@ def on_message(client, userdata, msg):
 
         nodeIndex = getNodeIndex(nodeID)
 
-        if nodeIndex > 0  and nodeObjects[nodeIndex].climateMdlAvail:
+        if nodeIndex > 0:
             print("Reading data for Node ID:" + nodeID + " with Node Index " + str(nodeIndex))
             if sensorID == nodeIDs[nodeIndex]['pmSensor']:
                 nodeObjects[nodeIndex].nodeReaderPM(sensorDictionary)

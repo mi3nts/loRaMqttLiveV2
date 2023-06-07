@@ -288,7 +288,7 @@ class node:
         print("Climate Data Read")
         print(self.dataInClimate)
         # At this point I need to consider the sensor, 
-        if self.climateSensor  =="BME688CNR":        
+        if self.climateSensor  in {"BME688CNR","BME280"}:        
             self.temperature.append(float(self.dataInClimate['temperature']))
             self.pressure.append(float(self.dataInClimate['pressure']))
             self.humidity.append(float(self.dataInClimate['humidity']))
@@ -299,9 +299,9 @@ class node:
     def currentUpdateGPS(self):
         print("GPS Data Read")
         print(self.dataInGPS)
-        if self.gpsSensor  =="GPGGAPL":      
-            self.latitude.append(float(self.dataInGPS['latitudeCoordinate']))
-            self.longitude.append(float(self.dataInGPS['longitudeCoordinate']))
+        if self.gpsSensor in {"GPGGAPL","GPGGA"}:      
+            self.latitude.append(float(self.dataInGPS['latitude']))
+            self.longitude.append(float(self.dataInGPS['longitude']))
             self.altitude.append(float(self.dataInGPS['altitude']))
             timeIn  = datetime.strptime(self.dataInGPS['dateTime'],'%Y-%m-%d %H:%M:%S.%f')
             self.dateTimeGPS.append(timeIn)
@@ -377,18 +377,24 @@ class node:
 
 
     def doCSV(self):
-        if(len(self.temperature)>0):
-            temperatureCalibrated = mN.c2F(self.mdlDict["WIMDA_airTemperature_MDL"].predict(np.array(self.temperatureAvg).reshape(1,-1))[0])
-            pressureCalibrated    = mN.b2MB(self.mdlDict["YXXDR_barrometricPressureBars_MDL"].predict(np.array(self.pressureAvg).reshape(1,-1))[0])
-            humidityCalibrated    = self.mdlDict["WIMDA_relativeHumidity_MDL"].predict(np.array(self.humidityAvg).reshape(1,-1))[0]
-            dewPointCalibrated    = mN.c2F(self.mdlDict["WIMDA_dewPoint_MDL"].predict(np.array([self.temperatureAvg,self.pressureAvg,self.humidityAvg]).reshape(1,-1))[0])
+        if (self.climateMdlAvail):
+            if(len(self.temperature)>0):
+                temperatureCalibrated = mN.c2F(self.mdlDict["WIMDA_airTemperature_MDL"].predict(np.array(self.temperatureAvg).reshape(1,-1))[0])
+                pressureCalibrated    = mN.b2MB(self.mdlDict["YXXDR_barrometricPressureBars_MDL"].predict(np.array(self.pressureAvg).reshape(1,-1))[0])
+                humidityCalibrated    = self.mdlDict["WIMDA_relativeHumidity_MDL"].predict(np.array(self.humidityAvg).reshape(1,-1))[0]
+                dewPointCalibrated    = mN.c2F(self.mdlDict["WIMDA_dewPoint_MDL"].predict(np.array([self.temperatureAvg,self.pressureAvg,self.humidityAvg]).reshape(1,-1))[0])
+            else:
+                temperatureCalibrated = -1.0
+                pressureCalibrated    = -1.0
+                humidityCalibrated    = -1.0
+                dewPointCalibrated    = -1.0
         else:
-            temperatureCalibrated = -1.0
-            pressureCalibrated    = -1.0
-            humidityCalibrated    = -1.0
-            dewPointCalibrated    = -1.0          
+            temperatureCalibrated = -2.0
+            pressureCalibrated    = -2.0
+            humidityCalibrated    = -2.0
+            dewPointCalibrated    = -2.0        
 
-        dateTimeNow = self.getTimeV2()
+        self.getTimeV2()
 
         sensorDictionary = OrderedDict([
                 ("dateTime"         ,self.dateTimeStrCSV),
