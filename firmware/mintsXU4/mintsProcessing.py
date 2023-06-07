@@ -67,7 +67,7 @@ mergedPklsFolder     = mD.mergedPklsFolder
 
 def superReaderV2(nodeID,sensorID):
     if sensorID == "BME280":
-        floatSum  = 4
+        floatSum  = 3
         floatSum2 = -1         
     elif sensorID == "BME680":
         floatSum  = 4
