@@ -49,9 +49,13 @@ def sensorReceiveLoRa(dateTime,nodeID,sensorID,framePort,base16Data):
     if(sensorID=="IPS7100"):
         sensorDictionary = IPS7100LoRaReturn(dateTime,framePort,base16Data)        
     if(sensorID=="BME688CNR"):
-        sensorDictionary =BME688CNRLoRaReturn(dateTime,framePort,base16Data)        
+        sensorDictionary =BME688CNRLoRaReturn(dateTime,framePort,base16Data)      
+    if(sensorID=="BME280"):
+        sensorDictionary =BME280LoRaReturn(dateTime,framePort,base16Data)                
     if(sensorID=="GPGGAPL"):
         sensorDictionary =GPGGAPLLoRaReturn(dateTime,framePort,base16Data) 
+    if(sensorID=="GPGGALR"):
+        sensorDictionary =GPGGALRLoRaReturn(dateTime,framePort,base16Data)         
     return sensorDictionary;
 
 def IPS7100LoRaReturn(dateTime,framePort,base16Data):
